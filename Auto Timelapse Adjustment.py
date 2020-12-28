@@ -9,7 +9,7 @@ r.debug(False)
 photo_metadata_location = (656, 2051, 924, 2076)
 photo_exposure_box_location = (517, 805)
 
-adjustment_symmetry_start_end = (2, 3) # 0-based index
+adjustment_symmetry_start_end = (3, 4) # 1-based index
 
 
 import math
@@ -132,7 +132,7 @@ adjustment_schedule = [None] * (len(solved_adjustments)
 # transform solved adjustments into a schedule
 
 for i in range(len(solved_adjustments)):
-  if adjustment_symmetry_start_end[0] <= i <= adjustment_symmetry_start_end[1]:
+  if adjustment_symmetry_start_end[0] - 1 <= i <= adjustment_symmetry_start_end[1] - 1:
     half_value = solved_adjustments[i] // 2
     adjustment_schedule[i] = (i + 1, half_value)
     adjustment_schedule[(len(solved_adjustments) - 1) * 2 - i] = (i + 1, solved_adjustments[i] - half_value)
